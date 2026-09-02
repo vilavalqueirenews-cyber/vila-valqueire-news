@@ -1,0 +1,8 @@
+# ============================================
+# VILA VALQUEIRE NEWS - Cloudflare Pages
+# _redirects - regras de redirecionamento
+# ============================================
+# Nota: a Cloudflare Page Function em /functions/api/news.js
+# ja e servida automaticamente em /api/news pelo Cloudflare
+# Pages. Nao e necessario (nem recomendavel) reescrever essa
+# rota aqui, pois isso atrapalharia o despacho da funcao.

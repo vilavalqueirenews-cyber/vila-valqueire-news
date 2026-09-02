@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - Painel de Administracao | Vila Valqueire News</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="../img/logo-header.png" alt="Vila Valqueire News" class="sidebar-logo-img">
+                    <span>Vila Valqueire <strong>News</strong></span>
+                </div>
+                <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Principal</div>
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="news">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Noticias</span>
+                </a>
+                <a href="#" class="nav-item" data-page="new-news">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Nova Noticia</span>
+                </a>
+                <a href="#" class="nav-item" data-page="categories">
+                    <i class="fas fa-tags"></i>
+                    <span>Categorias</span>
+                </a>
+                
+                <div class="nav-section-title">Configuracoes</div>
+                <a href="#" class="nav-item" data-page="ads">
+                    <i class="fas fa-ad"></i>
+                    <span>Publicidade</span>
+                </a>
+                <a href="#" class="nav-item" data-page="radio">
+                    <i class="fas fa-radio"></i>
+                    <span>Radio</span>
+                </a>
+                <a href="#" class="nav-item" data-page="site-config">
+                    <i class="fas fa-cog"></i>
+                    <span>Config. do Site</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Perfil</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-profile">
+                    <div class="avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="profile-info">
+                        <strong id="adminName">Administrador</strong>
+                        <span>Super Admin</span>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn" title="Sair">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- OVERLAY MOBILE -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        
+        <!-- MAIN AREA -->
+        <div class="admin-main">
+            <!-- TOP BAR -->
+            <header class="admin-topbar">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="topbar-title">
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="topbar-actions">
+                    <a href="../index.html" class="topbar-btn" title="Ver site">
+                        <i class="fas fa-globe"></i>
+                        <span class="hide-mobile">Ver site</span>
+                    </a>
+                    <div class="topbar-clock" id="topbarClock"></div>
+                </div>
+            </header>
+            
+            <!-- CONTENT -->
+            <main class="admin-content">
+                <!-- DASHBOARD PAGE -->
+                <div class="page active" id="page-dashboard">
+                    <div class="welcome-banner">
+                        <h2>Bem-vindo, <span id="welcomeName">Administrador</span>!</h2>
+                        <p>Gerencie as noticias e configuracões do seu portal Vila Valqueire News.</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue"><i class="fas fa-newspaper"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="statNews">0</span>
+                                <span class="stat-label">Total de Noticias</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green"><i class="fas fa-eye"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="statViews">0</span>
+                                <span class="stat-label">Visualizacoes</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange"><i class="fas fa-comments"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="statComments">0</span>
+                                <span class="stat-label">Comentarios</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple"><i class="fas fa-tags"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="statCategories">0</span>
+                                <span class="stat-label">Categorias</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-fire"></i> Noticias mais lidas</h3>
+                            </div>
+                            <div class="card-body" id="dashboardMostRead">
+                                <div class="loading-text">Carregando...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-clock"></i> Atividades recentes</h3>
+                            </div>
+                            <div class="card-body" id="activityLog">
+                                <div class="loading-text">Carregando...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NOTICIAS PAGE -->
+                <div class="page" id="page-news">
+                    <div class="page-header">
+                        <h2>Gerenciar Noticias</h2>
+                        <a href="#" class="btn btn-primary" data-goto="new-news">
+                            <i class="fas fa-plus"></i> Nova Noticia
+                        </a>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Todas as noticias</h3>
+                            <div class="card-tools">
+                                <input type="text" id="newsSearchInput" placeholder="Buscar noticia..." class="input-small">
+                                <select id="categoryFilter" class="input-small">
+                                    <option value="todas">Todas categorias</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="admin-table" id="newsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Imagem</th>
+                                            <th>Titulo</th>
+                                            <th>Categoria</th>
+                                            <th>Visualizacoes</th>
+                                            <th>Data</th>
+                                            <th>Acoes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="newsTableBody">
+                                        <tr><td colspan="7" class="loading-text">Carregando...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NOVA NOTICIA PAGE -->
+                <div class="page" id="page-new-news">
+                    <div class="page-header">
+                        <h2>Nova Noticia</h2>
+                        <a href="#" class="btn btn-secondary" data-goto="news">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="newsForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="newsTitle">Titulo da noticia <span class="required">*</span></label>
+                                        <input type="text" id="newsTitle" required placeholder="Digite o titulo da noticia">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newsCategory">Categoria <span class="required">*</span></label>
+                                        <select id="newsCategory" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="politica">Politica</option>
+                                            <option value="seguranca">Seguranca</option>
+                                            <option value="saude">Saude</option>
+                                            <option value="educacao">Educacao</option>
+                                            <option value="cultura">Cultura</option>
+                                            <option value="esportes">Esportes</option>
+                                            <option value="economia">Economia</option>
+                                            <option value="comunidade">Comunidade</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="newsExcerpt">Resumo / Descricao <span class="required">*</span></label>
+                                    <textarea id="newsExcerpt" rows="3" required placeholder="Breve resumo da noticia"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="newsContent">Conteudo completo <span class="required">*</span></label>
+                                    <textarea id="newsContent" rows="8" required placeholder="Escreva o conteudo completo da noticia aqui..."></textarea>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="newsImage">URL da imagem</label>
+                                        <input type="url" id="newsImage" placeholder="https://exemplo.com/imagem.jpg">
+                                        <small>Deixe em branco para usar imagem padrao</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newsTime">Tempo (etiqueta)</label>
+                                        <input type="text" id="newsTime" placeholder="Ex: Ha 2 horas, Agora">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Publicar Noticia
+                                    </button>
+                                    <button type="reset" class="btn btn-secondary">
+                                        <i class="fas fa-undo"></i> Limpar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CATEGORIAS PAGE -->
+                <div class="page" id="page-categories">
+                    <div class="page-header">
+                        <h2>Categorias</h2>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Gerenciar categorias</h3>
+                        </div>
+                        <div class="card-body" id="categoriesList">
+                            <div class="loading-text">Carregando...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ADS PAGE -->
+                <div class="page" id="page-ads">
+                    <div class="page-header">
+                        <h2>Gerenciar Publicidade</h2>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Para monetizacao completa, cadastre seu site no <strong>Google AdSense</strong> e substitua o <code>ca-pub-XXXXXXXXXXXXXXXX</code> por seu ID real no arquivo <code>index.html</code>.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-ad"></i> Codigos AdSense</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="adsenseClientId">Google AdSense Client ID</label>
+                                <input type="text" id="adsenseClientId" value="ca-pub-XXXXXXXXXXXXXXXX" placeholder="ca-pub-XXXXXXXXXXXX">
+                                <small>Seu ID publicado no Google AdSense</small>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" id="saveAdsBtn">
+                                    <i class="fas fa-save"></i> Salvar Configuracao
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Estatisticas de Anuncios</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="ads-stats">
+                                <div class="ads-stat-item">
+                                    <span class="ads-stat-label">Posicoes de anuncio</span>
+                                    <span class="ads-stat-value">6</span>
+                                </div>
+                                <div class="ads-stat-item">
+                                    <span class="ads-stat-label">Banner topo (728x90)</span>
+                                    <span class="ads-stat-status">Ativo</span>
+                                </div>
+                                <div class="ads-stat-item">
+                                    <span class="ads-stat-label">Banner inline (468x60)</span>
+                                    <span class="ads-stat-status">Ativo</span>
+                                </div>
+                                <div class="ads-stat-item">
+                                    <span class="ads-stat-label">Sidebar (responsive)</span>
+                                    <span class="ads-stat-status">Ativo</span>
+                                </div>
+                                <div class="ads-stat-item">
+                                    <span class="ads-stat-label">Sticky bottom (320x50)</span>
+                                    <span class="ads-stat-status">Ativo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RADIO PAGE -->
+                <div class="page" id="page-radio">
+                    <div class="page-header">
+                        <h2>Configuracao da Radio</h2>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-radio"></i> Radio Jovem Rio</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Status da radio</label>
+                                <div class="radio-test" id="radioTestStatus">
+                                    Verificando conexao...
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="radioUrl">URL da transmissao</label>
+                                <input type="text" id="radioUrl" value="https://radiojovemrio.com:8000/stream">
+                            </div>
+                            <div class="form-group">
+                                <label for="radioAutoplay">
+                                    <input type="checkbox" id="radioAutoplay"> 
+                                    Permitir autoplay (iniciar automaticamente)
+                                </label>
+                                <small>Muitos navegadores bloqueiam autoplay por padrao. O usuario clicara para tocar.</small>
+                            </div>
+                            <div class="playback-test">
+                                <button class="btn btn-primary" id="testRadioBtn">
+                                    <i class="fas fa-play"></i> Testar reproducao
+                                </button>
+                                <div id="playerTestResult" class="playback-status"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SITE CONFIG PAGE -->
+                <div class="page" id="page-site-config">
+                    <div class="page-header">
+                        <h2>Configuracoes do Site</h2>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-cog"></i> Informacoes gerais</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="siteName">Nome do site</label>
+                                <input type="text" id="siteName" value="Vila Valqueire News">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteDomain">Dominio</label>
+                                <input type="text" id="siteDomain" value="www.vilavalqueirenews.com.br">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteDescription">Descricao</label>
+                                <textarea id="siteDescription" rows="3">Noticias em tempo real da Vila Valqueire, Rio de Janeiro. Portal de noticias local com informacoes sobre politica, seguranca, saude, educacao, cultura, esportes e economia do bairro.</textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" id="saveSiteBtn">
+                                    <i class="fas fa-save"></i> Salvar Configuracoes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-comments"></i> Contato e institucional</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="companyName">Empresa</label>
+                                    <input type="text" id="companyName" value="JSMuniz Publicidade">
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyPhone">Telefone</label>
+                                    <input type="text" id="companyPhone" value="(21) 2453-4420">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyAddress">Endereco</label>
+                                <input type="text" id="companyAddress" value="Vila Valqueire, Rio de Janeiro - RJ">
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" id="saveCompanyBtn">
+                                    <i class="fas fa-save"></i> Salvar Contato
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROFILE PAGE -->
+                <div class="page" id="page-profile">
+                    <div class="page-header">
+                        <h2>Perfil do Administrador</h2>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user-shield"></i> Informacoes do administrador</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="profile-section">
+                                <div class="profile-avatar-large">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="profile-details">
+                                    <h3 id="profileName">Administrador</h3>
+                                    <p><i class="fas fa-envelope"></i> <span id="profileEmail">vilavalqueirenews@gmail.com</span></p>
+                                    <p><i class="fas fa-user-tag"></i> <span id="profileRole">Super Admin</span></p>
+                                    <p><i class="fas fa-building"></i> JSMuniz Publicidade</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-key"></i> Alterar senha</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="currentPassword">Senha atual</label>
+                                <input type="password" id="currentPassword" placeholder="Digite a senha atual">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Nova senha</label>
+                                <input type="password" id="newPassword" placeholder="Digite a nova senha">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmar nova senha</label>
+                                <input type="password" id="confirmPassword" placeholder="Confirme a nova senha">
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" id="changePasswordBtn">
+                                    <i class="fas fa-key"></i> Alterar Senha
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal" style="display:none;">
+        <div class="modal-box">
+            <h3>Confirmar exclusao</h3>
+            <p>Tem certeza que deseja excluir esta noticia? Esta acao nao pode ser desfeita.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelDeleteBtn">Cancelar</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/news-data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

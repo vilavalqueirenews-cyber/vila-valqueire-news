@@ -1,0 +1,22 @@
+# Artefatos de build / dependencias (nao vao para o site)
+node_modules/
+.wrangler/
+dist/
+out/
+build/
+
+# Scripts locais de sincronizacao
+*.bat
+
+# Arquivos de utilidade / backup
+*.bak
+*.bak-antiga
+*.log
+
+# Winston/sistemas
+.DS_Store
+Thumbs.db
+
+# Config do wrangler criada automaticamente (usar Pages nativo)
+wrangler.jsonc
+wrangler.toml

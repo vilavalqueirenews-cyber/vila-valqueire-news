@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vila Valqueire News - Noticias em tempo real do bairro Vila Valqueire, Rio de Janeiro. JSMuniz Publicidade.">
+    <meta name="keywords" content="Vila Valqueire, noticias, Rio de Janeiro, bairro, comunidade, JSMuniz">
+    <meta name="author" content="JSMuniz Publicidade">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vila Valqueire News - Noticias do Bairro">
+    <meta property="og:description" content="As melhores noticias em tempo real da Vila Valqueire, Rio de Janeiro">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vilavalqueirenews.com.br">
+    <meta property="og:site_name" content="Vila Valqueire News">
+
+    <title>Vila Valqueire News - Noticias em Tempo Real | Rio de Janeiro</title>
+
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- TOP BAR - Hora, Data, Clima -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-left">
+                <span id="currentDate"></span>
+                <span class="separator">|</span>
+                <span id="currentTime"></span>
+            </div>
+            <div class="top-bar-right">
+                <span id="weatherInfo">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span id="weatherText">Carregando clima...</span>
+                </span>
+                <span class="separator">|</span>
+                <span class="temp-display" id="tempDisplay">--°C</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="logo-area">
+                <img src="img/logo-header.png" alt="Vila Valqueire News" class="site-logo">
+            </div>
+            <div class="header-right">
+                <div class="breaking-news-badge" id="breakingBadge">
+                    <span class="pulse-dot"></span>
+                    AO VIVO
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="main-nav">
+        <div class="container nav-inner">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active" data-category="todas">Todas</a></li>
+                <li><a href="#" data-category="politica">Rio de Janeiro</a></li>
+                <li><a href="#" data-category="seguranca">Seguranca</a></li>
+                <li><a href="#" data-category="saude">Saude</a></li>
+                <li><a href="#" data-category="educacao">Educacao</a></li>
+                <li><a href="#" data-category="cultura">Cultura</a></li>
+                <li><a href="#" data-category="esportes">Esportes</a></li>
+                <li><a href="#" data-category="economia">Economia</a></li>
+                <li><a href="#" data-category="comunidade">Comunidade</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="Buscar noticias..." id="searchInput">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BANNER PUBLICITARIO PRINCIPAL (TOPO) -->
+    <section class="ad-banner top-banner">
+        <div class="container">
+            <div class="ad-label">Publicidade</div>
+            <div class="ad-container ad-top" id="adTop">
+                <!-- Google AdSense - Banner Topo 728x90 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:728px;height:90px"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <!-- Fallback se AdSense nao carregar -->
+                <div class="ad-fallback" id="adFallbackTop">
+                    <div class="ad-fallback-content">
+                        <span class="ad-tag">PUBLICIDADE</span>
+                        <p><strong>JSMuniz Publicidade</strong> - Solucoes em publicidade para o seu negocio</p>
+                        <p class="ad-contact"><i class="fas fa-phone"></i> (21) 2453-4420</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDER DE PUBLICIDADE -->
+    <section class="ad-slider-section">
+        <div class="container">
+            <div class="ad-label">Publicidade</div>
+            <div class="ad-slider" id="adSlider">
+                <div class="ad-slider-track" id="adSliderTrack">
+                    <!-- Os slides sao inseridos via JS (com seus links) -->
+                </div>
+                <button class="ad-slider-btn ad-slider-prev" id="adSliderPrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="ad-slider-btn ad-slider-next" id="adSliderNext" aria-label="Proximo"><i class="fas fa-chevron-right"></i></button>
+                <div class="ad-slider-dots" id="adSliderDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="container content-grid">
+
+            <!-- LEFT COLUMN - NEWS -->
+            <div class="news-column">
+
+                <!-- NOTICIA DESTAQUE -->
+                <article class="featured-news" id="featuredNews">
+                    <div class="featured-image">
+                        <img src="" alt="Noticia em destaque" id="featuredImg">
+                        <span class="news-category-tag" id="featuredCategory">Destaque</span>
+                    </div>
+                    <div class="featured-content">
+                        <div class="news-meta">
+                            <span class="news-time" id="featuredTime"><i class="fas fa-clock"></i> Agora</span>
+                            <span class="news-comments"><i class="fas fa-comment"></i> 0</span>
+                        </div>
+                        <h2 id="featuredTitle">Carregando noticias...</h2>
+                        <p id="featuredExcerpt"></p>
+                        <a href="#" class="read-more">Leia mais <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- BANNER LATERAL DENTRO DO CONTEUDO -->
+                <div class="ad-banner inline-banner">
+                    <div class="ad-label">Publicidade</div>
+                    <div class="ad-container ad-inline">
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:468px;height:60px"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        <div class="ad-fallback">
+                            <div class="ad-fallback-content">
+                                <span class="ad-tag">PUBLICIDADE</span>
+                                <p><strong>Anuncie aqui!</strong> alcance milhares de moradores da Vila Valqueire</p>
+                                <p class="ad-contact"><i class="fas fa-phone"></i> (21) 2453-4420</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRID DE NOTICIAS -->
+                <div class="news-grid" id="newsGrid">
+                    <!-- Noticias serao carregadas via JavaScript -->
+                </div>
+
+                <!-- BOTAO CARREGAR MAIS -->
+                <div class="load-more-area">
+                    <button class="load-more-btn" id="loadMoreBtn">
+                        <i class="fas fa-sync-alt"></i> Carregar mais noticias
+                    </button>
+                </div>
+
+                <!-- BANNER RODAPE DO CONTEUDO -->
+                <div class="ad-banner bottom-content-banner">
+                    <div class="ad-label">Publicidade</div>
+                    <div class="ad-container">
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:468px;height:60px"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        <div class="ad-fallback">
+                            <div class="ad-fallback-content">
+                                <span class="ad-tag">PUBLICIDADE</span>
+                                <p>Seu anuncio pode estar aqui! Fale conosco.</p>
+                                <p class="ad-contact"><i class="fas fa-phone"></i> (21) 2453-4420</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="sidebar">
+
+                <!-- CLIMA WIDGET -->
+                <div class="sidebar-widget weather-widget">
+                    <h3 class="widget-title"><i class="fas fa-cloud-sun"></i> Clima - Vila Valqueire</h3>
+                    <div class="weather-content" id="weatherWidget">
+                        <div class="weather-main">
+                            <i class="fas fa-sun weather-icon" id="weatherIcon"></i>
+                            <div class="weather-temp" id="weatherTempBig">--°C</div>
+                        </div>
+                        <div class="weather-desc" id="weatherDescBig">Carregando...</div>
+                        <div class="weather-details">
+                            <div class="weather-detail">
+                                <i class="fas fa-tint"></i>
+                                <span id="humidity">--%</span>
+                                <small>Umidade</small>
+                            </div>
+                            <div class="weather-detail">
+                                <i class="fas fa-wind"></i>
+                                <span id="wind">-- km/h</span>
+                                <small>Vento</small>
+                            </div>
+                            <div class="weather-detail">
+                                <i class="fas fa-eye"></i>
+                                <span id="visibility">-- km</span>
+                                <small>Visibilidade</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BANNER SIDEBAR -->
+                <div class="sidebar-widget ad-widget">
+                    <div class="ad-label">Publicidade</div>
+                    <div class="ad-container ad-sidebar">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        <div class="ad-fallback ad-sidebar-fallback">
+                            <div class="ad-fallback-content">
+                                <span class="ad-tag">PUBLICIDADE</span>
+                                <p><strong>JSMuniz Publicidade</strong></p>
+                                <p>Coloque sua marca aqui!</p>
+                                <p class="ad-contact"><i class="fas fa-phone"></i> (21) 2453-4420</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTICIAS MAIS LIDAS -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fas fa-fire"></i> Mais Lidas</h3>
+                    <div class="most-read-list" id="mostReadList">
+                        <!-- Carregado via JS -->
+                    </div>
+                </div>
+
+                <!-- ANUNCIANTES -->
+                <div class="sidebar-widget sponsors-widget">
+                    <h3 class="widget-title"><i class="fas fa-handshake"></i> Anunciantes</h3>
+                    <div class="sponsors-list">
+                        <div class="sponsor-item">
+                            <div class="sponsor-logo"><i class="fas fa-building"></i></div>
+                            <div class="sponsor-info">
+                                <strong>JSMuniz Publicidade</strong>
+                                <span>(21) 2453-4420</span>
+                            </div>
+                        </div>
+                        <div class="sponsor-item sponsor-placeholder">
+                            <p>Seu negocio aqui! <a href="#">Anuncie</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BANNER SIDEBAR 2 -->
+                <div class="sidebar-widget ad-widget">
+                    <div class="ad-label">Publicidade</div>
+                    <div class="ad-container ad-sidebar">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        <div class="ad-fallback ad-sidebar-fallback">
+                            <div class="ad-fallback-content">
+                                <span class="ad-tag">PUBLICIDADE</span>
+                                <p>Espaco publicitario disponível</p>
+                                <p class="ad-contact"><i class="fas fa-phone"></i> (21) 2453-4420</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-header.png" alt="Vila Valqueire News" class="footer-logo-img">
+                    </div>
+                    <p>O portal de noticias mais completo da Vila Valqueire. Informacoes em tempo real para a comunidade.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/vilavalqueirenews" target="_blank" title="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vilavalqueirenews" target="_blank" title="Instagram" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/vilavalqueirenews" target="_blank" title="Twitter/X" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.youtube.com/@vilavalqueirenews" target="_blank" title="YouTube" rel="noopener"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/552124534420" target="_blank" title="WhatsApp" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a href="#">Rio de Janeiro</a></li>
+                        <li><a href="#">Seguranca</a></li>
+                        <li><a href="#">Saude</a></li>
+                        <li><a href="#">Educacao</a></li>
+                        <li><a href="#">Cultura</a></li>
+                        <li><a href="#">Esportes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Sobre nos</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Anuncie</a></li>
+                        <li><a href="#">Politica de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-building"></i> JSMuniz Publicidade</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vila Valqueire - Rio de Janeiro</p>
+                        <p><i class="fas fa-phone"></i> (21) 2453-4420</p>
+                        <p><i class="fas fa-envelope"></i> vilavalqueirenews@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Vila Valqueire News - Todos os direitos reservados. | Propriedade de <strong>JSMuniz Publicidade</strong> | Vila Valqueire, Rio de Janeiro</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BANNER FIXO RODAPE (STICKY AD) -->
+    <div class="sticky-bottom-ad" id="stickyBottomAd">
+        <button class="close-sticky" id="closeSticky"><i class="fas fa-times"></i></button>
+        <div class="ad-label">Publicidade</div>
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:50px"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            <div class="ad-fallback">
+                <div class="ad-fallback-content compact">
+                    <span class="ad-tag">PUBLICIDADE</span>
+                    <p><strong>JSMuniz Publicidade</strong> | (21) 2453-4420</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/552124534420" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- PLAYER RADIO JOVEM RIO (FLUTUANTE) -->
+    <div class="radio-float" id="radioFloat">
+        <div class="radio-float-panel" id="radioFloatPanel">
+            <div class="radio-float-header">
+                <div class="radio-details">
+                    <span class="radio-name">Radio Jovem Rio</span>
+                    <span class="radio-status" id="radioStatus">Clique para ouvir</span>
+                </div>
+                <button class="radio-float-close" id="radioFloatClose" title="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="radio-controls">
+                <button class="radio-play-btn" id="radioPlayBtn" title="Play/Pause">
+                    <i class="fas fa-play" id="radioPlayIcon"></i>
+                </button>
+                <div class="radio-volume">
+                    <i class="fas fa-volume-up" id="volumeIcon"></i>
+                    <input type="range" min="0" max="100" value="80" id="volumeSlider">
+                </div>
+                <div class="radio-visualizer" id="radioVisualizer">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <audio id="radioAudio" preload="none">
+                <source src="https://stream.zeno.fm/vu4v6xtdyy8uv" type="audio/aac">
+            </audio>
+        </div>
+        <button class="radio-float-btn" id="radioFloatBtn" title="Ouvir Radio Jovem Rio">
+            <i class="fas fa-radio"></i>
+            <span class="radio-float-pulse"></span>
+        </button>
+    </div>
+
+    <script src="js/news-data.js?v=2"></script>
+    <script src="js/news-sources.js?v=2"></script>
+    <script src="js/main.js?v=2"></script>
+</body>
+</html>

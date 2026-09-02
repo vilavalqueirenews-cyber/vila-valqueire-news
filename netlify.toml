@@ -1,0 +1,52 @@
+# ============================================
+# VILA VALQUEIRE NEWS - Configuracao Netlify
+# JSMuniz Publicidade | www.vilavalqueirenews.com.br
+# ============================================
+
+[build]
+  # A pasta raiz ja contem os arquivos do site
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Configuracao do proxy/redirect da API
+[[redirects]]
+  from = "/api/news"
+  to = "/.netlify/functions/news"
+  status = 200
+
+# Redirecionamento SPA (rotas de excecao) - garante que index.html carregue em rotas diretas
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de seguranca e cache
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=()"
+
+# Cache de recursos estaticos (imagens e estilos)
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# JS deve SEMPRE se atualizar (as noticias dependem do codigo atual).
+# Cache imutavel de 1 ano travava versoes antigas e impedia a busca das
+# noticias reais. Usamos no-cache + must-revalidate para sempre revalidar.
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, no-cache, must-revalidate"

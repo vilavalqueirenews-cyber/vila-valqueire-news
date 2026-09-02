@@ -1,0 +1,147 @@
+========================================
+   VILA VALQUEIRE NEWS - Portal de Noticias
+   Propriedade: JSMuniz Publicidade
+   Vila Valqueire, Rio de Janeiro
+   Telefone: (21) 2453-4420
+========================================
+
+ESTRUTURA DO SITE
+-----------------
+/ (raiz)
+|-- index.html          - Pagina principal do portal
+|-- css/style.css       - Estilos do site principal
+|-- js/main.js          - Funcionalidades (clima, relogio, radio, noticias)
+|-- js/news-data.js     - Banco de dados de noticias (editavel)
+|-- img/                - Pasta para imagens adicionais
+|
+|-- admin/              - PAINEL DE ADMINISTRACAO (acesso restrito)
+    |-- index.html      - Pagina de login
+    |-- dashboard.html  - Painel de controle
+    |-- css/admin.css   - Estilos do painel
+    |-- js/admin-auth.js- Autenticacao de login
+    |-- js/admin.js     - Funcionalidades do painel
+
+ACESSO AO PAINEL DE ADMINISTRACAO
+---------------------------------
+URL: /admin/  (ex: https://www.vilavalqueirenews.com.br/admin/)
+
+Credenciais de acesso (apenas o proprietario):
+  Usuario: vilavalqueirenews
+  Senha:   @Jojo7811
+
+IMPORTANTE: Nao compartilhe estas credenciais. Para maior seguranca
+em producao, recomendamos mover a autenticacao para o lado do servidor
+(PHP, Node.js, etc.) em vez de javascript no cliente.
+
+RECURSOS DO SITE
+----------------
+1. NOTICIAS EM TEMPO REAL
+   - Noticias locais do bairro Vila Valqueire
+   - Categorias: Politica, Seguranca, Saude, Educacao, Cultura,
+     Esportes, Economia, Comunidade
+   - Noticia em destaque no topo
+   - Busca e filtro por categoria
+   - Para editar/adicionar noticias: edite o arquivo js/news-data.js
+
+2. CLIMA - VILA VALQUEIRE
+   - Previsao em tempo real usando API gratuita Open-Meteo
+   - Temperatura, umidade, vento, visibilidade
+   - Posicionado no topo e no menu lateral
+
+3. DATA E HORA
+   - Data completa no topo
+   - Hora atualizada automaticamente a cada segundo
+
+4. RADIO JOVEM RIO - AUTOPLAY
+   - Player embutido: https://radiojovemrio.com/
+   - Botao play/pause, controle de volume, visualizador animado
+   - Nota: A maioria dos navegadores bloqueia autoplay de audio.
+     O usuario precisa clicar no play para iniciar a radio.
+
+5. PUBLICIDADE / MONETIZACAO GOOGLE ADSENSE
+   - Banner principal no topo (728x90)
+   - Banner inline no conteudo (468x60)
+   - Banner lateral x2 (responsivo)
+   - Sticky ad no rodape (320x50) - fecha automaticamente
+   - Banner dentro da noticia (modal)
+   - POSICOES DE ANUNCIO PREPARADAS, apenas substitua o
+     ca-pub-XXXXXXXXXXXXXXXX pelo seu ID real do AdSense
+     (tanto no index.html quanto no head)
+
+6. RODAPE INSTITUCIONAL
+   - JSMuniz Publicidade
+   - Telefone: (21) 2453-4420
+   - Email: vilavalqueirenews@gmail.com
+   - WhatsApp: (21) 2453-4420
+   - Redes sociais (todas @vilavalqueirenews):
+     * Facebook: facebook.com/vilavalqueirenews
+     * Instagram: instagram.com/vilavalqueirenews
+     * X/Twitter: x.com/vilavalqueirenews
+     * YouTube: youtube.com/@vilavalqueirenews
+   - Categorias e links
+
+COMO SUBIR O SITE PARA O AR (DEPLOY)
+------------------------------------
+Opcao 1 - Hospedagem compartilhada (recomendada):
+  Basta enviar todos os arquivos via FTP para a pasta /public_html
+  ou /www do seu dominio www.vilavalqueirenews.com.br
+
+Opcao 2 - GitHub Pages / Netlify / Vercel:
+  Suba a pasta inteira como um repositorio estatico.
+
+========================================
+NOTICIAS EM TEMPO REAL (IMPORTANTE)
+========================================
+O site busca noticias REAIS e atualizadas dos feeds RSS de fontes
+confiaveis (G1, UOL) a cada acesso.
+
+COMO FUNCIONA NO NETLIFY:
+1. A pasta "netlify/functions/news.js" e uma Netlify Function (serverless)
+   que roda NO SERVIDOR do Netlify e busca os feeds sem problema de CORS.
+2. O site chama essa funcao pelo caminho /api/news
+   (configurado no netlify.toml).
+3. Se a funcao falhar, o site usa rss2json como fallback e, por ultimo,
+   as noticias locais do arquivo js/news-data.js.
+
+PARA PUBLICAR NO NETLIFY (COM FUNCOES):
+- IMPORTANTE: por ter Netlify Functions, o upload manual (arrastar pasta)
+  NAO funciona. Voce precisa conectar a uma conta (GitHub/GitLab) ou
+  usar o CLI. Recomenda-se:
+  * Publique o projeto em um repositorio GitHub e conecte ao Netlify,
+    ou
+  * Use o comando:  npx netlify deploy --prod   (na pasta raiz)
+
+FONTES DE NOTICIAS (editaveis):
+- Arquivo que lista as fontes e palavras-chave do bairro/Rio:
+    netlify/functions/news.js  (funcao - principal)
+    js/news-sources.js         (fallback no navegador)
+- Para ajustar a classificacao das noticias em categorias, edite os
+  CATEGORY_KEYWORDS nos dois arquivos.
+
+IMPORTANTE PARA O FUNCIONAMENTO DO ADSENSE:
+  1. Cadastre o dominio www.vilavalqueirenews.com.br no Google AdSense
+  2. Copie seu Codigo do editor (ca-pub-XXXXXXXX)
+  3. Substitua TODAS as ocorrencias de ca-pub-XXXXXXXXXXXXXXXX
+     no arquivo index.html pelo seu codigo real
+  4. Aguarde a aprovacao do Google (normalmente 1-2 semanas)
+
+CONTATO
+-------
+Empresa: JSMuniz Publicidade
+Local: Vila Valqueire, Rio de Janeiro - RJ
+Telefone: (21) 2453-4420
+Email: vilavalqueirenews@gmail.com
+Dominio: www.vilavalqueirenews.com.br
+
+========================================
+AVISO - MANUTENCAO DO SITE
+========================================
+EXISTEM DUAS COPIAS DO SITE:
+  1. Pasta ORIGINAL de trabalho:
+     C:\Users\jovem\OneDrive\Documentos\Default Project\vila-valqueire-news
+  2. Copia em DOWNLOADS (backup/para publicar):
+     C:\Users\jovem\Downloads\CRIAÇÃO-SITE_VILAVALQUEIRENEWS.COM.BR-31.08.2026
+
+REGRA: SEMPRE que algo for alterado, mantenha as DUAS pastas iguais.
+O arquivo em DOWNLOADS e o que deve ser enviado ao Netlify.
+

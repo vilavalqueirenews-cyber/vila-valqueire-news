@@ -1,0 +1,12 @@
+{
+  "name": "vila-valqueire-news",
+  "version": "2.0.0",
+  "description": "Portal de noticias da Vila Valqueire - JSMuniz Publicidade",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {}
+}

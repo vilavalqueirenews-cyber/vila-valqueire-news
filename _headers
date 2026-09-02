@@ -1,0 +1,22 @@
+# ============================================
+# VILA VALQUEIRE NEWS - Cloudflare Pages
+# _headers - cabecalhos HTTP globais
+# ============================================
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Nunca colocar cache em arquivos de noticias dinamicas (API)
+/api/*
+  Cache-Control: no-store
+  Access-Control-Allow-Origin: *
+
+# Cache longo para assets estaticos versionados (imagens, css, js)
+/js/*
+  Cache-Control: public, max-age=604800
+/css/*
+  Cache-Control: public, max-age=604800
+/img/*
+  Cache-Control: public, max-age=604800
