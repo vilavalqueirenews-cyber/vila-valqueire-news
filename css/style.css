@@ -1802,7 +1802,7 @@ img {
     }
 
     .ad-fallback-image img {
-        object-fit: contain;
+        object-fit: fill;
         height: auto;
     }
 
