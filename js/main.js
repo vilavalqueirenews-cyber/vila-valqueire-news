@@ -979,6 +979,13 @@ const AD_SLIDES = [
         cta: 'Chamar no Zap',
         url: 'https://wa.me/552124534420',
         slideClass: 'ad-slide-5'
+    },
+    {
+        logo: 'Sua marca aqui!',
+        msg: 'O seu anuncio pode ocupar este espaco. Alcance Vila Valqueire',
+        cta: 'Anunciar com a gente',
+        url: 'https://wa.me/552124534420',
+        slideClass: 'ad-slide-6'
     }
 ];
 
@@ -1046,15 +1053,16 @@ function initAdSlider() {
     if (nextBtn) nextBtn.addEventListener('click', next);
     if (prevBtn) prevBtn.addEventListener('click', prev);
 
-    // Autoplay a cada 5s
-    const interval = setInterval(next, 5000);
+    // Autoplay lento (ameno): troca a cada 9s
+    let interval = setInterval(next, 9000);
 
-    // Pausa ao passar o mouse
+    // Pausa ao passar o mouse (e retoma com novo intervalo, sem duplicar)
     const slider = document.getElementById('adSlider');
     if (slider) {
         slider.addEventListener('mouseenter', function() { clearInterval(interval); });
         slider.addEventListener('mouseleave', function() {
-            setInterval(next, 5000);
+            clearInterval(interval);
+            interval = setInterval(next, 9000);
         });
     }
 }
