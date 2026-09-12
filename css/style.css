@@ -318,6 +318,31 @@ img {
     justify-content: center;
 }
 
+.ad-top .ad-fallback-image {
+    background: #fff;
+    border: 1px solid var(--border);
+}
+
+.ad-top .ad-fallback-image::before {
+    display: none;
+}
+
+.ad-top .ad-fallback-image a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+}
+
+.ad-top .ad-fallback-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .ad-fallback {
     width: 100%;
     padding: 0;
@@ -1746,6 +1771,16 @@ img {
     .ad-top .ad-fallback {
         border-radius: 8px;
         margin: 0 10px;
+    }
+
+    .ad-top .ad-fallback-image a {
+        height: auto;
+        max-height: 110px;
+    }
+
+    .ad-top .ad-fallback-image img {
+        object-fit: contain;
+        height: auto;
     }
 
     .ad-slider {
