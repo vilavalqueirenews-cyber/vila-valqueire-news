@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (data.status !== 'ok' || !data.items || data.items.length === 0) return;
                     const collected = data.items.map(function(item) {
                         item.isReal = true;
-                        item.categoryLabel = NEWS_CATEGORIES[item.category] || 'Noticias';
+                        item.categoryLabel = (item.isNational === true) ? 'Política' : (NEWS_CATEGORIES[item.category] || 'Noticias');
                         if (!item.time) item.time = 'Agora';
                         if (!item.views) item.views = 1;
                         return item;
@@ -206,7 +206,7 @@ function fetchRealNews() {
             // Itens ja vem prontos da funcao (buildNews feito no servidor)
             const collected = data.items.map(function(item) {
                 item.isReal = true;
-                item.categoryLabel = NEWS_CATEGORIES[item.category] || 'Noticias';
+                item.categoryLabel = (item.isNational === true) ? 'Política' : (NEWS_CATEGORIES[item.category] || 'Noticias');
                 if (!item.time) item.time = 'Agora';
                 if (!item.views) item.views = 1;
                 return item;
@@ -262,6 +262,7 @@ function buildNewsFromSource(item, source, sourceIndex) {
 
     const isRio = isRioNews(title + ' ' + description);
     const isBairro = isBairroNews(title + ' ' + description);
+    const isNational = source.isNational === true;
     const category = guessCategory(title + ' ' + description, source.categoryGuess);
 
     let content = description;
@@ -273,7 +274,7 @@ function buildNewsFromSource(item, source, sourceIndex) {
         excerpt: description,
         content: content,
         category: category,
-        categoryLabel: NEWS_CATEGORIES[category] || source.categoryGuess || 'Noticias',
+        categoryLabel: (isNational ? 'Política' : (NEWS_CATEGORIES[category] || source.categoryGuess || 'Noticias')),
         time: formatPubDate(pubDate),
         date: formatDateOnly(pubDate),
         image: thumb && thumb !== '' ? thumb : getPlaceholderImage(category),
@@ -283,6 +284,7 @@ function buildNewsFromSource(item, source, sourceIndex) {
         sourceName: source.name,
         sourceUrl: link,
         isReal: true,
+        isNational: isNational,
         isRio: isRio,
         isBairro: isBairro
     };
@@ -440,13 +442,14 @@ function getFilteredNews() {
 }
 
 function loadFeaturedNews() {
-    // Se houver noticias reais, usa a primeira (prioridade bairro/Rio) como destaque
+    // Destaque: prioriza noticias de politica do Brasil e do mundo (G1 Politica/Mundo),
+    // escolhidas aleatoriamente a cada atualizacao. Se nao houver, usa a primeira real.
     let featured = null;
-    if (ACTIVE_NEWS.length > 0) {
-        const realFeatured = ACTIVE_NEWS.find(function(n) { return n.isReal === true; });
-        if (realFeatured) {
-            featured = realFeatured;
-        }
+    const reais = ACTIVE_NEWS.filter(function(n) { return n.isReal === true; });
+    if (reais.length > 0) {
+        const politicaNacional = reais.filter(function(n) { return n.isNational === true; });
+        const pool = politicaNacional.length > 0 ? politicaNacional : reais;
+        featured = pool[Math.floor(Math.random() * pool.length)];
     }
     if (!featured) {
         featured = NEWS_DATABASE.featured;
@@ -459,9 +462,25 @@ function loadFeaturedNews() {
     document.getElementById('featuredTitle').textContent = featured.title;
     document.getElementById('featuredExcerpt').textContent = featured.excerpt;
     
-    document.querySelector('.featured-news').addEventListener('click', function() {
-        openNewsArticle(featured);
-    });
+    // Substitui o handler anterior para nao acumular multiplos ouvintes
+    const featuredEl = document.querySelector('.featured-news');
+    if (featuredEl) {
+        featuredEl.onclick = function() {
+            if (featured.isReal && featured.sourceUrl) {
+                window.open(featured.sourceUrl, '_blank', 'noopener,noreferrer');
+            } else {
+                openNewsArticle(featured);
+            }
+        };
+    }
+}
+
+// Atualiza a interface com as noticias ativas
+function refreshNewsDisplay() {
+    newsLoadedCount = NEWS_PER_PAGE;
+    loadFeaturedNews();
+    loadNewsGrid(NEWS_PER_PAGE);
+    loadMostRead();
 }
 
 function loadNewsGrid(count, append = false) {

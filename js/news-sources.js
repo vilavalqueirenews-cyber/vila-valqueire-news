@@ -22,17 +22,47 @@ const NEWS_SOURCES = [
         regionTags: ['rio de janeiro', 'bairro', 'vila valqueire', 'rj', 'zona oeste']
     },
     {
+        name: 'G1 Política',
+        shortName: 'G1',
+        url: 'https://g1.globo.com/dynamo/politica/rss2.xml',
+        categoryGuess: 'politica',
+        isNational: true,
+        regionTags: []
+    },
+    {
+        name: 'G1 Mundo',
+        shortName: 'G1',
+        url: 'https://g1.globo.com/dynamo/mundo/rss2.xml',
+        categoryGuess: 'politica',
+        isNational: true,
+        regionTags: []
+    },
+    {
+        name: 'G1 Economia',
+        shortName: 'G1',
+        url: 'https://g1.globo.com/dynamo/economia/rss2.xml',
+        categoryGuess: 'economia',
+        regionTags: []
+    },
+    {
+        name: 'G1 Saúde',
+        shortName: 'G1',
+        url: 'https://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml',
+        categoryGuess: 'saude',
+        regionTags: []
+    },
+    {
+        name: 'G1 Cultura',
+        shortName: 'G1',
+        url: 'https://g1.globo.com/dynamo/pop-arte/rss2.xml',
+        categoryGuess: 'cultura',
+        regionTags: []
+    },
+    {
         name: 'G1 Educação',
         shortName: 'G1',
         url: 'https://g1.globo.com/dynamo/educacao/rss2.xml',
         categoryGuess: 'educacao',
-        regionTags: []
-    },
-    {
-        name: 'G1 Esporte',
-        shortName: 'G1',
-        url: 'https://g1.globo.com/dynamo/esporte/rss2.xml',
-        categoryGuess: 'esportes',
         regionTags: []
     },
     {

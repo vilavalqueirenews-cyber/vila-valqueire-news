@@ -6,16 +6,16 @@
 const NEWS_DATABASE = {
     featured: {
         id: 1,
-        title: "Vila Valqueire recebe novo projeto de iluminacao LED nas ruas principais",
-        excerpt: "A Prefeitura do Rio de Janeiro confirmou a instalacao de iluminacao LED nas principais vias do bairro da Vila Valqueire. O projeto visa melhorar a seguranca e reduzir o consumo energetico da regiao, com previsao de conclusao ate dezembro de 2026.",
-        content: "A Secretaria Municipal de Urbanismo anunciou que as obras de substituicao da iluminacao publica no bairro da Vila Valqueire comecaram esta semana. O projeto contempla a instalacao de 350 pontos de iluminacao LED nas ruas Marechal Deodoro, Visconde de Niteroi e nas travas laterais. O investimento e de R$ 2,3 milhoes e gerara economia de 60% no consumo de energia. Moradores celebram a iniciativa que vinha sendo reivindicada ha anos.",
-        category: "politica",
-        categoryLabel: "Politica",
-        time: "Ha 2 horas",
-        date: "31/08/2026",
-        image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=800&h=400&fit=crop",
-        comments: 47,
-        views: 1250
+        title: "Vila Valqueire News - Noticias em tempo real",
+        excerpt: "Acompanhe automaticamente as principais noticias do Brasil e do mundo, atualizadas em tempo real.",
+        content: "O Vila Valqueire News agrega noticias automaticas de fontes confiaveis (G1, UOL), com foco inicial no Rio de Janeiro e no bairro da Vila Valqueire. As noticias sao atualizadas automaticamente enquanto a pagina esta aberta.",
+        category: "todas",
+        categoryLabel: "Noticias",
+        time: "Agora",
+        date: "",
+        image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&h=400&fit=crop",
+        comments: 0,
+        views: 0
     },
     news: [
         {
@@ -200,7 +200,6 @@ const NEWS_DATABASE = {
         }
     ],
     breakingNews: [
-        "Vila Valqueire recebe novo projeto de iluminacao LED",
         "Posto de saude amplia horario de funcionamento",
         "Time da Vila conquista titulo do campeonato inter-bairros",
         "Operacao policial prende 4 suspects na regiao",

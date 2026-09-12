@@ -20,10 +20,18 @@
 const SOURCES = [
     { name: 'G1 Rio de Janeiro', short: 'G1', fallbackCat: 'comunidade', isRioFeed: true,
       url: 'https://g1.globo.com/dynamo/rj/rio-de-janeiro/rss2.xml' },
+    { name: 'G1 Política', short: 'G1', fallbackCat: 'politica', isNational: true,
+      url: 'https://g1.globo.com/dynamo/politica/rss2.xml' },
+    { name: 'G1 Mundo', short: 'G1', fallbackCat: 'politica', isNational: true,
+      url: 'https://g1.globo.com/dynamo/mundo/rss2.xml' },
+    { name: 'G1 Economia', short: 'G1', fallbackCat: 'economia',
+      url: 'https://g1.globo.com/dynamo/economia/rss2.xml' },
+    { name: 'G1 Saúde', short: 'G1', fallbackCat: 'saude',
+      url: 'https://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml' },
+    { name: 'G1 Cultura', short: 'G1', fallbackCat: 'cultura',
+      url: 'https://g1.globo.com/dynamo/pop-arte/rss2.xml' },
     { name: 'G1 Educação', short: 'G1', fallbackCat: 'educacao',
       url: 'https://g1.globo.com/dynamo/educacao/rss2.xml' },
-    { name: 'G1 Esporte', short: 'G1', fallbackCat: 'esportes',
-      url: 'https://g1.globo.com/dynamo/esporte/rss2.xml' },
     { name: 'UOL Esporte', short: 'UOL', fallbackCat: 'esportes',
       url: 'https://rss.uol.com.br/feed/esporte.xml' }
 ];
@@ -166,6 +174,7 @@ function buildNews(item, source, sourceIndex) {
         sourceName: source.name,
         sourceUrl: link,
         isReal: true,
+        isNational: !!source.isNational,
         isRio: source.isRioFeed || matchesAny(text, RIO_KEYWORDS),
         isBairro: matchesAny(text, BAIRRO_KEYWORDS),
         pubTs: pubTs
