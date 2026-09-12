@@ -4,23 +4,46 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Verificar autenticacao
-    if (sessionStorage.getItem('vvn_admin_auth') !== 'true') {
+    // Verificar autenticacao no servidor antes de liberar o dashboard
+    var token = sessionStorage.getItem('vvn_admin_token');
+    if (sessionStorage.getItem('vvn_admin_auth') !== 'true' || !token) {
         window.location.href = 'index.html';
         return;
     }
 
-    initLayout();
-    initNavigation();
-    initClock();
-    loadDashboard();
-    loadNewsTable();
-    loadCategories();
-    initNewsForm();
-    initSiteConfig();
-    initRadioConfig();
-    initProfile();
-    initLogout();
+    fetch('/api/auth?check=' + encodeURIComponent(token), { cache: 'no-store' })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.ok !== true) {
+                logoutAndRedirect();
+                return;
+            }
+            initDashboard();
+        })
+        .catch(function() {
+            logoutAndRedirect();
+        });
+
+    function logoutAndRedirect() {
+        sessionStorage.removeItem('vvn_admin_auth');
+        sessionStorage.removeItem('vvn_admin_token');
+        sessionStorage.removeItem('vvn_admin_user');
+        window.location.href = 'index.html';
+    }
+
+    function initDashboard() {
+        initLayout();
+        initNavigation();
+        initClock();
+        loadDashboard();
+        loadNewsTable();
+        loadCategories();
+        initNewsForm();
+        initSiteConfig();
+        initRadioConfig();
+        initProfile();
+        initLogout();
+    }
 });
 
 /* ============================================
@@ -517,6 +540,7 @@ function initProfile() {
 function initLogout() {
     document.getElementById('logoutBtn').addEventListener('click', function() {
         sessionStorage.removeItem('vvn_admin_auth');
+        sessionStorage.removeItem('vvn_admin_token');
         sessionStorage.removeItem('vvn_admin_user');
         window.location.href = 'index.html';
     });

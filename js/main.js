@@ -263,7 +263,7 @@ function buildNewsFromSource(item, source, sourceIndex) {
     const isRio = isRioNews(title + ' ' + description);
     const isBairro = isBairroNews(title + ' ' + description);
     const isNational = source.isNational === true;
-    const category = guessCategory(title + ' ' + description, source.categoryGuess);
+    const category = source.forceCategory || guessCategory(title + ' ' + description, source.categoryGuess);
 
     let content = description;
     if (content.length < 30) content = description + ' Leia a materia completa na fonte.';
@@ -804,6 +804,9 @@ function initNavigation() {
             loadFeaturedNews();
             loadNewsGrid(NEWS_PER_PAGE);
             loadMostRead();
+
+            // Busca na hora noticias reais da categoria clicada (nao espera os 60s)
+            fetchRealNews();
             
             if (window.innerWidth <= 768) {
                 navLinks.classList.remove('open');

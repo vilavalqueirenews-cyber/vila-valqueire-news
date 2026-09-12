@@ -17,22 +17,25 @@
 // voltam HTML e nao funcionam mais.
 // Notas: fontes de politica nacional foram removidas a pedido do cliente.
 // O foco e nas noticias do Rio de Janeiro (G1 Rio vem primeiro).
+// `forceCategory`: feed tematico -> TODAS as noticias do feed pertencem a
+// essa categoria (nao depende de palavras-chave). Somente o G1 Rio usa
+// `guessCategory` por keywords (e genérico, mistura tudo).
 const SOURCES = [
     { name: 'G1 Rio de Janeiro', short: 'G1', fallbackCat: 'comunidade', isRioFeed: true,
       url: 'https://g1.globo.com/dynamo/rj/rio-de-janeiro/rss2.xml' },
-    { name: 'G1 Política', short: 'G1', fallbackCat: 'politica', isNational: true,
+    { name: 'G1 Política', short: 'G1', fallbackCat: 'politica', isNational: true, forceCategory: 'politica',
       url: 'https://g1.globo.com/dynamo/politica/rss2.xml' },
-    { name: 'G1 Mundo', short: 'G1', fallbackCat: 'politica', isNational: true,
+    { name: 'G1 Mundo', short: 'G1', fallbackCat: 'politica', isNational: true, forceCategory: 'politica',
       url: 'https://g1.globo.com/dynamo/mundo/rss2.xml' },
-    { name: 'G1 Economia', short: 'G1', fallbackCat: 'economia',
+    { name: 'G1 Economia', short: 'G1', fallbackCat: 'economia', forceCategory: 'economia',
       url: 'https://g1.globo.com/dynamo/economia/rss2.xml' },
-    { name: 'G1 Saúde', short: 'G1', fallbackCat: 'saude',
+    { name: 'G1 Saúde', short: 'G1', fallbackCat: 'saude', forceCategory: 'saude',
       url: 'https://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml' },
-    { name: 'G1 Cultura', short: 'G1', fallbackCat: 'cultura',
+    { name: 'G1 Cultura', short: 'G1', fallbackCat: 'cultura', forceCategory: 'cultura',
       url: 'https://g1.globo.com/dynamo/pop-arte/rss2.xml' },
-    { name: 'G1 Educação', short: 'G1', fallbackCat: 'educacao',
+    { name: 'G1 Educação', short: 'G1', fallbackCat: 'educacao', forceCategory: 'educacao',
       url: 'https://g1.globo.com/dynamo/educacao/rss2.xml' },
-    { name: 'UOL Esporte', short: 'UOL', fallbackCat: 'esportes',
+    { name: 'UOL Esporte', short: 'UOL', fallbackCat: 'esportes', forceCategory: 'esportes',
       url: 'https://rss.uol.com.br/feed/esporte.xml' }
 ];
 
@@ -164,7 +167,7 @@ function buildNews(item, source, sourceIndex) {
         title: title,
         excerpt: description,
         content: content,
-        category: guessCategory(text, source.fallbackCat),
+        category: source.forceCategory || guessCategory(text, source.fallbackCat),
         time: formatTime(pubTs),
         date: formatDate(pubTs),
         image: image,

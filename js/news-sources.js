@@ -42,6 +42,7 @@ const NEWS_SOURCES = [
         shortName: 'G1',
         url: 'https://g1.globo.com/dynamo/economia/rss2.xml',
         categoryGuess: 'economia',
+        forceCategory: 'economia',
         regionTags: []
     },
     {
@@ -49,6 +50,7 @@ const NEWS_SOURCES = [
         shortName: 'G1',
         url: 'https://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml',
         categoryGuess: 'saude',
+        forceCategory: 'saude',
         regionTags: []
     },
     {
@@ -56,6 +58,7 @@ const NEWS_SOURCES = [
         shortName: 'G1',
         url: 'https://g1.globo.com/dynamo/pop-arte/rss2.xml',
         categoryGuess: 'cultura',
+        forceCategory: 'cultura',
         regionTags: []
     },
     {
@@ -63,6 +66,7 @@ const NEWS_SOURCES = [
         shortName: 'G1',
         url: 'https://g1.globo.com/dynamo/educacao/rss2.xml',
         categoryGuess: 'educacao',
+        forceCategory: 'educacao',
         regionTags: []
     },
     {
@@ -70,6 +74,7 @@ const NEWS_SOURCES = [
         shortName: 'UOL',
         url: 'https://rss.uol.com.br/feed/esporte.xml',
         categoryGuess: 'esportes',
+        forceCategory: 'esportes',
         regionTags: []
     }
 ];

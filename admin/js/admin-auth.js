@@ -4,14 +4,22 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Credenciais de acesso (proprietario JSMuniz Publicidade)
-    const ADMIN_USER = 'vilavalqueirenews';
-    const ADMIN_PASS = 'Jojo7811';
+    // Credenciais validadas NO SERVIDOR via /api/auth (Pages Function).
+    // Nenhuma senha fica exposta no codigo publico.
     const AUTH_KEY = 'vvn_admin_auth';
+    const TOKEN_KEY = 'vvn_admin_token';
 
     // Se ja estiver logado, redireciona para dashboard
-    if (sessionStorage.getItem(AUTH_KEY) === 'true') {
-        window.location.href = 'dashboard.html';
+    if (sessionStorage.getItem(AUTH_KEY) === 'true' && sessionStorage.getItem(TOKEN_KEY)) {
+        // Revalida o token no servidor antes de abrir o dashboard
+        verifySession().then(function(valid) {
+            if (valid) {
+                window.location.href = 'dashboard.html';
+            } else {
+                sessionStorage.removeItem(AUTH_KEY);
+                sessionStorage.removeItem(TOKEN_KEY);
+            }
+        });
         return;
     }
 
@@ -48,42 +56,63 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Simular pequena pausa para autenticacao
+        // Autenticar no servidor (Cloudflare Pages Function /api/auth)
         loginBtn.disabled = true;
         loginBtn.classList.add('loading');
         loginBtnText.textContent = 'Autenticando...';
         loginBtn.querySelector('i').className = 'fas fa-circle-notch';
 
-        setTimeout(function() {
-            if (username === ADMIN_USER && password === ADMIN_PASS) {
+        fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username, password: password })
+        })
+        .then(function(res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+        })
+        .then(function(data) {
+            if (data.ok && data.token) {
                 // Sucesso - registrar sessao
                 sessionStorage.setItem(AUTH_KEY, 'true');
+                sessionStorage.setItem(TOKEN_KEY, data.token);
                 sessionStorage.setItem('vvn_admin_user', username);
                 sessionStorage.setItem('vvn_admin_login_time', new Date().toISOString());
-                
+
                 // Toast de sucesso
                 showToast('success', '<i class="fas fa-check-circle"></i> Login realizado com sucesso!');
-                
+
                 setTimeout(function() {
                     window.location.href = 'dashboard.html';
                 }, 800);
             } else {
-                // Falha
-                loginBtn.disabled = false;
-                loginBtn.classList.remove('loading');
-                loginBtnText.textContent = 'Entrar no Painel';
-                loginBtn.querySelector('i').className = 'fas fa-sign-in-alt';
-                
-                errorText.textContent = 'Usuario ou senha incorretos. Tente novamente.';
-                errorBox.style.display = 'flex';
-                shakeError();
-                
-                // Limpar campos
-                passwordInput.value = '';
-                passwordInput.focus();
+                throw new Error(data.error || 'Falha na autenticacao');
             }
-        }, 800);
+        })
+        .catch(function(err) {
+            loginBtn.disabled = false;
+            loginBtn.classList.remove('loading');
+            loginBtnText.textContent = 'Entrar no Painel';
+            loginBtn.querySelector('i').className = 'fas fa-sign-in-alt';
+
+            errorText.textContent = 'Usuario ou senha incorretos. Tente novamente.';
+            errorBox.style.display = 'flex';
+            shakeError();
+
+            // Limpar campos
+            passwordInput.value = '';
+            passwordInput.focus();
+        });
     });
+
+    function verifySession() {
+        const token = sessionStorage.getItem(TOKEN_KEY);
+        if (!token) return Promise.resolve(false);
+        return fetch('/api/auth?check=' + encodeURIComponent(token), { cache: 'no-store' })
+            .then(function(res) { return res.json(); })
+            .then(function(data) { return data.ok === true; })
+            .catch(function() { return false; });
+    }
 
     function shakeError() {
         errorBox.style.animation = 'none';
