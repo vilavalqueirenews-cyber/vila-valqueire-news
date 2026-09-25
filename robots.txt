@@ -1,0 +1,21 @@
+# robots.txt - Vila Valqueire News
+# https://www.vilavalqueirenews.com.br
+
+User-agent: *
+Allow: /
+
+# Paginas institucionais - uteis para indexacao, sem valor de busca
+Disallow: /admin/
+Disallow: /api/
+
+# Bots de anuncios (o Google AdSense precisa varrer o site para aprovar)
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+Sitemap: https://www.vilavalqueirenews.com.br/sitemap.xml

@@ -1,0 +1,292 @@
+/* ============================================
+   PAGINAS INSTITUCIONAIS (privacidade, termos,
+   sobre, contato) - complementa style.css
+   ============================================ */
+
+.pagina-header {
+    background: var(--primary);
+    color: var(--text-white);
+    padding: 18px 0;
+}
+
+.pagina-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.pagina-header .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-white);
+}
+
+.pagina-header .brand img {
+    height: 44px;
+    width: auto;
+    display: block;
+}
+
+.pagina-header .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.pagina-header .brand-text strong {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.pagina-header .brand-text span {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px;
+    opacity: 0.9;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.pagina-header .voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-white);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.pagina-header .voltar:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- CONTEUDO ---------- */
+
+.pagina-body {
+    background: var(--bg);
+    padding: 32px 0 48px;
+}
+
+.pagina-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 30px 34px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pagina-card h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--secondary);
+    margin: 0 0 6px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--primary);
+}
+
+.pagina-card .atualizado {
+    font-size: 13px;
+    color: var(--text-light);
+    margin: 0 0 24px;
+}
+
+.pagina-card h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin: 28px 0 10px;
+}
+
+.pagina-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 20px 0 8px;
+}
+
+.pagina-card p,
+.pagina-card li {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text);
+    margin: 0 0 12px;
+}
+
+.pagina-card ul,
+.pagina-card ol {
+    margin: 0 0 16px;
+    padding-left: 22px;
+}
+
+.pagina-card a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192, 57, 43, 0.3);
+    word-break: break-word;
+}
+
+.pagina-card a:hover {
+    border-bottom-color: var(--primary);
+}
+
+.destaque {
+    background: #fdf3f2;
+    border-left: 4px solid var(--primary);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 18px;
+    margin: 0 0 20px;
+}
+
+.destaque p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+/* ---------- TABELA DE CONTATOS ---------- */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 0 0 24px;
+}
+
+.info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.info-box i {
+    font-size: 18px;
+    color: var(--primary);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.info-box strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: var(--secondary);
+    margin-bottom: 3px;
+}
+
+.info-box span,
+.info-box a {
+    font-size: 14px;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: none;
+    word-break: break-word;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25d366;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    border-bottom: none;
+    padding: 13px 26px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.btn-whatsapp:hover {
+    background: #1eb85a;
+    border-bottom: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+}
+
+/* ---------- RODAPE SIMPLIFICADO ---------- */
+
+.pagina-footer {
+    background: var(--secondary);
+    color: rgba(255, 255, 255, 0.75);
+    padding: 22px 0;
+    font-size: 13px;
+}
+
+.pagina-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.pagina-footer a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    margin-left: 16px;
+    border-bottom: none;
+}
+
+.pagina-footer a:hover {
+    color: var(--accent-gold);
+}
+
+/* ---------- RESPONSIVO ---------- */
+
+@media (max-width: 768px) {
+    .pagina-card {
+        padding: 22px 18px;
+    }
+
+    .pagina-card h1 {
+        font-size: 22px;
+    }
+
+    .pagina-card h2 {
+        font-size: 17px;
+    }
+
+    .pagina-card p,
+    .pagina-card li {
+        font-size: 14px;
+    }
+
+    .pagina-header .brand-text span {
+        display: none;
+    }
+
+    .pagina-footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pagina-footer a {
+        margin: 0 8px;
+    }
+}

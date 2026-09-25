@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initStickyAd();
     initAdsFallback();
     initAdSlider();
+    initCategoryFromHash();
 
     // Atualizacao automatica das noticias (sem precisar de F5)
     // Busca novas noticias reais a cada 60 segundos enquanto a pagina esta aberta
@@ -921,6 +922,29 @@ function initStickyAd() {
             }, 3000);
         }
     });
+}
+
+/* ============================================
+   CATEGORIA VIA URL (index.html#saude)
+   Permite que os links do rodape abram direto
+   na aba desejada.
+   ============================================ */
+function initCategoryFromHash() {
+    // "seguranca" foi removido das abas, entao cai para "todas"
+    const VALID = ['todas', 'politica', 'saude', 'educacao', 'cultura', 'esportes', 'economia'];
+
+    function applyFromHash() {
+        const slug = (window.location.hash || '').replace('#', '').trim();
+        if (!slug || VALID.indexOf(slug) === -1) return;
+
+        const tab = document.querySelector('[data-category="' + slug + '"]');
+        if (!tab || tab.classList.contains('active')) return;
+
+        tab.click();
+    }
+
+    applyFromHash();
+    window.addEventListener('hashchange', applyFromHash);
 }
 
 /* ============================================
