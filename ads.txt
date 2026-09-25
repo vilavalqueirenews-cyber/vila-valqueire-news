@@ -1,4 +1,4 @@
 # ads.txt - Google AdSense
 # ID de publisher: mesmo numero do ca-pub- do HTML, SEM o prefixo "ca-".
 # Confirmar em: AdSense > Configuracoes da conta > ID da conta
-google.com, pub-3119221476823175, DIRECT, f08c47fec0942fa0
+google.com, pub-7380707446786073, DIRECT, f08c47fec0942fa0
