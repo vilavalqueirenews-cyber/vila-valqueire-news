@@ -1,0 +1,24 @@
+{
+  "name": "Vila Valqueire News",
+  "short_name": "Vila Valqueire",
+  "description": "Noticias em tempo real da Vila Valqueire, Rio de Janeiro",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c1272d",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "img/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

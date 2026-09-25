@@ -20,3 +20,8 @@
   Cache-Control: public, max-age=604800
 /img/*
   Cache-Control: public, max-age=604800
+
+# Manifest do PWA - precisa de Content-Type explicito por causa do nosniff acima
+/site.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=604800
