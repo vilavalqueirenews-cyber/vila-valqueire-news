@@ -6,22 +6,22 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://www.vilavalqueirenews.com.br/sobre.html</loc>
+        <loc>https://www.vilavalqueirenews.com.br/sobre</loc>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://www.vilavalqueirenews.com.br/contato.html</loc>
+        <loc>https://www.vilavalqueirenews.com.br/contato</loc>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://www.vilavalqueirenews.com.br/privacidade.html</loc>
+        <loc>https://www.vilavalqueirenews.com.br/privacidade</loc>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://www.vilavalqueirenews.com.br/termos.html</loc>
+        <loc>https://www.vilavalqueirenews.com.br/termos</loc>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
