@@ -305,6 +305,29 @@ img {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
+}
+
+/* O <ins> do AdSense precisa ocupar a linha inteira.
+   Sem flex:0 0 100% o flex comprimia o iframe do anuncio e ele nao aparecia. */
+.ad-container > ins.adsbygoogle {
+    display: block;
+    flex: 0 0 100%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Quando o anuncio real preenche a unidade, some com a moldura tracejada
+   e o fallback (main.js > initAdsFallback adiciona a classe .has-ad). */
+.ad-container.has-ad {
+    background: transparent;
+    border: none;
+    overflow: visible;
+}
+
+.ad-container.has-ad .ad-fallback {
+    display: none !important;
 }
 
 .ad-top {

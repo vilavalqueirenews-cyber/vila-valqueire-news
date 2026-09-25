@@ -1,5 +1,4 @@
-# GOOGLE ADSENSE — ads.txt
-# Após a aprovação no AdSense, troque pub-0000000000000000 pelo SEU ID de publisher
-# e remova esta linha de comentário se desejar. Exemplo:
-# google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# ads.txt - Google AdSense
+# ID de publisher: mesmo numero do ca-pub- do HTML, SEM o prefixo "ca-".
+# Confirmar em: AdSense > Configuracoes da conta > ID da conta
+google.com, pub-3119221476823175, DIRECT, f08c47fec0942fa0

@@ -927,18 +927,44 @@ function initStickyAd() {
    ADS FALLBACK (mostrar se AdSense falhar)
    ============================================ */
 function initAdsFallback() {
-    // Verificar se as propagandas do AdSense foram bloqueadas
-    // Se o ADS carregar, nao precisa fazer nada
-    setTimeout(function() {
-        document.querySelectorAll('.ad-container').forEach(container => {
-            const hasAdSense = container.querySelector('ins.adsbygoogle');
+    // O AdSense preenche as unidades de forma assincrona. A cada unidade
+    // preenchida escondemos o banner proprio (o fallback) e tiramos a
+    // moldura tracejada do container.
+    function syncAdStates() {
+        const containers = document.querySelectorAll('.ad-container');
+
+        for (let i = 0; i < containers.length; i++) {
+            const container = containers[i];
+            const ins = container.querySelector('ins.adsbygoogle');
             const fallback = container.querySelector('.ad-fallback');
-            
-            if (hasAdSense && fallback) {
-                // Deixar ambos; o AdSense vai renderizar quando aprovado
-                // O fallback fica escondido atras enquanto nao aprovado
+
+            if (!ins || !fallback) continue;
+
+            // O AdSense marca data-ad-status="filled" e injeta um iframe
+            // quando o anuncio foi exibido de fato.
+            const filled =
+                ins.getAttribute('data-ad-status') === 'filled' ||
+                ins.querySelector('iframe') !== null;
+
+            if (filled) {
+                fallback.style.display = 'none';
+                container.classList.add('has-ad');
+            } else {
+                fallback.style.display = '';
+                container.classList.remove('has-ad');
             }
-        });
+        }
+    }
+
+    syncAdStates();
+
+    // O preenchimento pode levar alguns segundos (e depende da rede).
+    // Acompanhamos por 25s e paramos.
+    let attempts = 0;
+    const timer = setInterval(function () {
+        syncAdStates();
+        attempts++;
+        if (attempts >= 25) clearInterval(timer);
     }, 1000);
 }
 
